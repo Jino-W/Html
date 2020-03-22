@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h2 id = 'head2'></h2>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+
+        //line braeak
+        const linebreak = document.createElement("br")
+
+        //h2
+        const h2Tag = document.getElementById('head2')
+        h2Tag.innerHTML = 'Get userName and mail id'
+        rootHandle.appendChild(h2Tag)
+
+        //select
+        const select = document.createElement('select')
+        //select.setAttribute("placeholder", '--select name--')
+        const option = document.createElement('option')
+        option.textContent = '--select name--'
+        select.appendChild(option) 
+        //select.innerHTML = 'emails'
+
+        const url = `http://jsonplaceholder.typicode.com/users`
+
+        //xhr
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', url)
+        xhr.send()
+
+        xhr.onload = function(){
+            const users = JSON.parse(xhr.responseText)
+
+            users.forEach(function(user){
+                console.log(user.email, user.username, user.name)
+                const option = document.createElement('option')
+                option.textContent = user.name
+                select.appendChild(option)                
+            })
+            rootHandle.appendChild(select)
+
+            rootHandle.appendChild(linebreak)     //linebreak
+
+            const userName = document.createElement('input')
+            userName.setAttribute("type", "text")
+            //userName.setAttribute("value", users[0].username)
+            userName.setAttribute("placeholder", 'userName') 
+            rootHandle.appendChild(userName)
+            const email = document.createElement('input')
+            email.setAttribute("type", "text")
+            //email.setAttribute("value", users[0].email)   
+            email.setAttribute("placeholder", 'email')   
+            rootHandle.appendChild(email)
+
+            select.addEventListener('change',function(){
+                const resultUser = users.find(function(user){
+                    return user.name == select.value
+                })
+                if(resultUser){
+                    userName.value = resultUser.username 
+                    email.value = resultUser.email
+                }else{
+                    userName.value = ''
+                    email.value = ''
+                }    
+            })
+        }
+        
+    </script>
+</html>

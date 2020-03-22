@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Filter List</title>
+</head>
+<body>
+    <div id='root'>
+
+    </div>
+    <button id='even' value="Even">Even</button>
+    <button id='odd' value="Odd">Odd</button>
+    <button id='reset' value='Reset'>Reset</button>
+    <script>
+        const numList=[1,2,3,4,5,6,7,8,9,10]
+        const rootHandle = document.getElementById('root')
+        const evenBtn=document.getElementById('even')
+        const oddBtn=document.getElementById('odd')
+        const resetBtn=document.getElementById('reset')
+        const pTag=document.createElement('p')
+        pTag.textContent = numList
+        rootHandle.appendChild(pTag)
+        evenBtn.addEventListener('click',function(){
+            pTag.textContent = numList.filter( num => num%2==0)
+        })
+        oddBtn.addEventListener('click',function(){
+            pTag.textContent = numList.filter(num => num%2!==0)
+        })
+        resetBtn.addEventListener('click',function(){
+            pTag.textContent = numList
+        })
+    </script>
+</body>
+</html>

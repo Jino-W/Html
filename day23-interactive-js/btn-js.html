@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h1 id= 'count'>0</h1>
+            <button id = 'up'>up</button>
+            <button id = 'down'>down</button>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const countHandle = document.getElementById('count')
+        const upHandle = document.getElementById('up')
+        const downHandle = document.getElementById('down')  // downHandle -> reference to down button
+        
+        //event: 'click'     , event handler: function(){ increse count }
+        upHandle.addEventListener('click', function(){
+            countHandle.innerHTML = parseInt(countHandle.innerHTML) + 1
+        })
+/*
+        //event: 'mouseover'    , event handler: function(){ decrese count }
+        downHandle.addEventListener('mouseover', function(){
+                countHandle.innerHTML = parseInt(countHandle.innerHTML) - 1
+        })
+*/
+        
+        //event: 'mouseover'    , event handler: function(){ decrese count upto 0 }
+        downHandle.addEventListener('mouseover', function(){
+            if(parseInt(countHandle.innerHTML) > 0){
+                countHandle.innerHTML = parseInt(countHandle.innerHTML) - 1
+            }
+        })
+
+    </script>
+</html>

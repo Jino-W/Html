@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+
+        const url = 'http://jsonplaceholder.typicode.com/users'
+        
+        const xhr = new XMLHttpRequest()      //to make an http request to a server
+
+        xhr.open('GET', url)              //to specify the url of the resource to request  
+        //HTTP methods: GET-Read/download data from the server, POST-Create/send data to the server, PUt-Update, DELETE-Destroy
+
+        xhr.send()              //to begin the request
+
+        xhr.onload = function(){   // xhr.onload-callBackFunction
+            console.log(xhr.responceText)
+            
+            const users = JSON.parse(xhr.responseText)
+
+            const h2Tag = document.createElement('h2')
+            h2Tag.textContent = `Listing Users - ${users.length}`
+            rootHandle.appendChild(h2Tag)
+            const ulTag = document.createElement('ul')
+
+            users.forEach(function(user){
+                const liTag = document.createElement('li')
+                liTag.textContent = user.name
+                ulTag.appendChild(liTag)
+            })
+
+            rootHandle.appendChild(ulTag)
+        }
+
+    </script>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New Tab App</title>
+
+</head>
+
+<body>
+
+  <div class="small-container">
+    <h1>New Tab App</h1>
+
+    <form>
+      <input id="item" type="text" placeholder="New" required>
+    </form>
+    
+    <h2>Items</h2>
+    <ul></ul>
+    
+    <button id='button'>Clear All</button>
+
+  </div>
+
+  <script>
+        const form = document.querySelector('form');
+        const ul = document.querySelector('ul');
+        const button = document.querySelector('button');
+        const input = document.getElementById('item');
+
+        //let itemsArray = [];
+        let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+        //key:'items'  value: '[]'
+        localStorage.setItem('items', JSON.stringify(itemsArray));  //{items: "[]", length: 1}
+        const data = JSON.parse(localStorage.getItem('items'));  //data = []
+
+        const liMaker = (text) => {   //text -> local parameter to this function
+          const li = document.createElement('li');
+          li.textContent = text;
+          ul.appendChild(li);
+        }
+
+        form.addEventListener('submit', function(e){  //submit -> enter 
+          e.preventDefault();
+
+          itemsArray.push(input.value);   //input.value:'jino' => ['jino']
+          localStorage.setItem('items', JSON.stringify(itemsArray)); //'['jino']'
+          liMaker(input.value);  //<li>jino</li>
+          input.value = "";      //
+        });
+
+        //This will display all existing stored information on the front end every time we open the app.
+        //this loop will run as soon as webpage get opened with the previously stored data
+        data.forEach(item => {
+          liMaker(item);
+        });
+
+        button.addEventListener('click', function () {
+          localStorage.clear();
+          while (ul.firstChild){
+            ul.removeChild(ul.firstChild);
+          }
+        });
+
+  
+  </script>
+</body>
+
+</html>

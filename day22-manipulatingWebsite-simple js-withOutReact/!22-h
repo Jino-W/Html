@@ -1,0 +1,33 @@
+- JS: 
+    -> Dynamic function on a webPage done by js
+    -> js at browser level is written inside the <script> </script> tag
+    -> webPage can be manipulated by js
+
+- HTML:
+    -> Hyper Text Markup Language
+    -> provide the structure to the webpage
+
+- DOM:
+    -> DOM - Document Object Model
+    -> Represents the structure of XML and HTML documents. (object representation of the entire website)
+    -> when a webpage is loaded (or) created the browser creates a Document Object Model of the page.
+    -> DOM object is provided by the browser, it reffers to the current website.
+    -> API for accessing and manipulating structured documents.(manipulate html elements or website)
+    
+
+
+- HTML DOM: The HTML DOM model is constructed as a 'tree of Objects' (parent-child)
+    -> Properties: innerHTML, textContent, attribute, value, 
+
+    -> Methods: createElement(),firstChild(), appendChild(), removeChild(), replaceChild(), getElementByID(), createElement(), quarrySelector(), getElementsByName(), getElementsByClassName(), getElementsByTagName(), setAttribute()
+
+    -> events: click, submit, mouseover, keyup, change
+    
+    -> eventHandler: js function
+
+
+
+- API:
+    -> API - Application Programming Interface
+    -> It is a software intermediary that allows two applications to talk to each other
+    -> It is an interface or communication protocol between a client and a server intended to simplify the building of client-side software.

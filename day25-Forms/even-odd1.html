@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>even-odd</title>
+</head>
+<body>
+    <div id="root">
+
+        <button id="even"></button>
+        <button id="odd"></button>
+        <button id="reset"></button>
+    </div>
+</body>
+    <script>
+        const rootHandle = document.getElementById('root')          
+        const ulTag = document.createElement('ul')
+        const evenHandle = document.getElementById('even')
+        const oddHandle = document.getElementById('odd')
+        const resetHandle = document.getElementById('reset')
+
+        evenHandle.textContent = 'even'
+        oddHandle.textContent = 'odd'
+        resetHandle.textContent = 'reset'
+
+        function removeChild(){
+        while( ulTag.firstChild ){
+            ulTag.removeChild( ulTag.firstChild )
+        }
+        }
+
+        
+        for(let i = 0; i <= 10; i++){
+            const liTag = document.createElement('li')
+            liTag.textContent = i
+            ulTag.appendChild(liTag)            
+        }
+        
+        
+        
+        evenHandle.addEventListener('click', function(){
+            removeChild()
+            for(let i = 0; i <= 10; i += 2){
+                const liTag = document.createElement('li')
+                liTag.textContent = i
+                ulTag.appendChild(liTag)
+            } 
+        })
+
+        oddHandle.addEventListener('click', function(){
+            removeChild()
+            for(let i = 0; i <= 10; i++){
+                if(i%2 !==0){
+                    const liTag = document.createElement('li')  
+                    liTag.textContent = i
+                    ulTag.appendChild(liTag)
+                }         
+            }
+        })
+
+        resetHandle.addEventListener('click',function(){
+            removeChild()
+            for(let i = 0; i <= 10; i++){
+            const liTag = document.createElement('li')
+            liTag.textContent = i
+            ulTag.appendChild(liTag)            
+        }
+        })
+    
+        rootHandle.appendChild(ulTag)
+    </script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const msg = 'Hello World' 
+
+        //h1-tag
+        const h1Tag = document.createElement('h1')  //creating h1 Tag
+        h1Tag.textContent = msg.toUpperCase()   //1* assigning the msg content(and convert it into uppercase) as the content inside the h1 tag
+        rootHandle.appendChild(h1Tag)    //making h1-Tag as child to div-id-root
+
+        //h2-tag
+        const h2Tag = document.createElement('h2')
+        h2Tag.innerHTML = 'hai jino'       //(or)  2*
+        rootHandle.appendChild(h2Tag)
+    </script>
+</html>

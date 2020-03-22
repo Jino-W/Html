@@ -1,0 +1,13 @@
+- localStorage:
+    -> Cookies and local storage serve different purposes. 
+    -> Cookies are mainly for reading server-side, whereas local storage can only be read by the client-side . 
+    -> Apart from saving data, a big technical difference is the size of data you can store, and as I mentioned earlier localStorage gives you more to work with.
+    -> Local storage lets a site save up to five megabytes (5MB) of data to a user's computer. That data can be accessed using JavaScript from any other page on the same site
+    -> localStorage has no expiration time 
+    -> It is an object available to us in browser level  (Storage {name: "virat", fruit: "mango", length: 2})
+
+    -> Methods: setItem(key, value), getItem(key), clear(), removeItem(key), key(index) 
+
+
+- session storage:
+    -> With session storage, the data disappears when the browser window is closed.

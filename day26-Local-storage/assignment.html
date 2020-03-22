@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id = 'root'>
+            <h1>Enter your name</h1>
+            <form id ='form'>
+                <input id= 'input' type = 'text' placeholder="name" required/>
+                <input type='submit'/>
+            </form>
+            <h2>List of names</h2>
+            <ul id= 'ul'></ul>
+            <button id='clear'>Clear</button>
+
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const form = document.getElementById('form')
+        const input = document.getElementById('input')
+        const button = document.getElementById('clear')
+        const ul = document.getElementById('ul')
+
+        //local storage
+        //const LiArray = []
+        const LiArray = localStorage.getItem('array') ? JSON.parse(localStorage.getItem('array')) : []
+        localStorage.setItem('array', JSON.stringify(LiArray))
+        const arr = JSON.parse(localStorage.getItem('array'))
+ 
+        //form submit, li list, push name in array
+        form.addEventListener('submit',function(sub_obj){
+            sub_obj.preventDefault()
+            const li = document.createElement('li')
+            li.innerHTML = input.value
+            LiArray.push(input.value)
+            localStorage.setItem('array', JSON.stringify(LiArray))
+
+            //o/p view:
+            console.log(input.value)
+            console.log(LiArray)
+            console.log(li.innerHTML)
+
+            input.value = ''
+            ul.appendChild(li)
+        })
+
+        //will display all the stored name
+        arr.forEach(function(nameList){
+            const liTag = document.createElement('li')
+            liTag.innerHTML = nameList
+            ul.appendChild(liTag)
+        })
+
+        //clear
+        button.addEventListener('click', function(){
+            localStorage.clear()
+            while(ul.firstChild){
+                ul.removeChild(ul.firstChild)
+            }
+            LiArray.length = 0  //(or)  LiArray = []
+        })
+
+
+        
+    </script>
+</html>

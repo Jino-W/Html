@@ -1,0 +1,105 @@
+- AJAX is based on the following open standards: https://www.javatpoint.com , https://www.tutorialspoint.com/ajax/index.htm
+    -> AJAX stands for Asynchronous JavaScript and XML
+    -> It is a group of inter-related technologies(JavaScript, DOM, XML, HTML/XHTML, CSS, XMLHttpRequest etc.,) used to display data asynchronously.
+    -> It makes the application interactive and faster.
+    -> In other words, it sends and retrieves data without reloading the web page.  (Updating the website without loading the page)
+    -> In the purest sense, the user would never know that anything was even transmitted to the server.
+
+- Inter-related technologies:
+    -> HTML/XHTML - These technologies are used for displaying content
+    -> CSS - display style
+    -> DOM - It is used for dynamic display and interaction with data.(object representation of HTML)
+    -> XML - It is used for carrying data to and from server (now, JSON format is used)
+    -> XMLHttpRequest - It is used for asynchronous communication between client and server.
+    -> JavaScript - It is used mainly for client-side validation
+
+    
+-AJAX disadvantages:
+    -> Dependent on JavaScript
+    -> Security issues:
+        -> AJAX source code is readable
+        -> Attackers can insert the script into the system
+    -> Debugging is difficult
+
+
+- AJAX web-application:
+    -> applications using ajax technology like gmail, facebook, twitter, google map, youtube etc.
+    -> eg: removing the cart items (or) changing the quantity of items required, Amazon
+
+--interpret:  A person who translates one language into another is called an interpreter because they are explaining what a person is saying to someone who doesn't understand.
+
+- Asynchronous (js): (AJAX Web-Application Model)
+    -> In js any function/operation that consumes time is send to the background and get executed atlast -> xhr.open('GET', "https://ipinfo.io/json", true);
+    -> between the time of request and responce the next line will get executed
+
+    -> An asynchronous request doesn’t block the client i.e. browser is responsive. At that time, user can perform another operations also. In such case, javascript engine of the browser is not blocked.
+    -> full page is not refreshed at request time and user gets response from the ajax engine
+
+    -> eg: setTimeout()  
+        -> The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+        -> The clearTimeout() method clears a timer set with the setTimeout() method.
+        -> The ID value returned by setTimeout() is used as the parameter for the clearTimeout() method.
+
+    -> you could set your request to run synchronously by specifying false for the third argument in the open method -> xhr.open('GET', url, false);
+
+
+- synchronous: (Classic Web-Application Model)
+    -> c,c++,java,python 
+    -> code will be executed one after other
+    -> A synchronous request blocks the client until operation completes i.e. browser is unresponsive(loading is happening). In such case, javascript engine of the browser is blocked.
+    -> full page is refreshed at request time and user is blocked until request completes
+
+
+- JavaScript:
+    -> Loosely typed scripting language.
+    -> JavaScript function is called when an event occurs in a page.
+    -> Glue for the whole AJAX operation.
+
+
+- Internet: https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm
+
+
+- XMLHttpRequest (XHR): (JSON request)
+    -> XHR-object is provided by the browser in JS envirnment.
+    -> Use XMLHttpRequest(XHR) objects to interact with servers. (performs asynchronous interaction with the server)
+    -> You can retrieve data from a URL without having to do a full page refresh
+
+    -> const xhr = new XMLHttpRequest()  
+        -> JSON request to the server
+        -> to make an http request to a server
+    -> xhr.open(HTTP methods, url) 
+        -> url: to specify the url of the resource to request
+        -> HTTP methods: 'GET'-Read/download data from the server, 'POST'-Create/send data to the server, 'PUt'-Update, 'DELETE'-Destroy
+    -> xhr.send() -> the request is sent to the server
+    -> xhr.responceText -> data from the server in JSON format(i.e, string)
+    -> xhr.onload = function(){}: 
+        -> callBackFunction, once the server gives the responce the call-back-function get called
+        -> onload is most often used within the <body> element to execute a script once a web page has completely loaded all content (including images, script files, CSS files, etc..)
+        -> The onload event can also be used to deal with cookies.
+        
+
+- cookies:
+    -> Cookies are small items of data, each consisting of a name and a value, stored on behalf of a website by visitors’ web browsers
+    -> JavaScript Cookies are a 'great way to save a user's preferences' in his / her browser. 
+    -> A cookie is a small piece of text stored on the visitor's computer by a web browser. 
+    -> As the information is stored on the hard drive it can be accessed later, even after the computer is turned off.
+    -> Use: A cookie can be used for authenticating, session tracking, remember specific information about the user like his name, password, last visited date etc.
+    -> JavaScript can also manipulate cookies using the cookie property of the Document object. (document.cookies)
+    -> JavaScript can read, create, modify, and delete the cookies that apply to the current web page.
+
+
+- XML:
+    -> XML stands for eXtensible Markup Language. 
+    -> XML is a markup language much like HTML. 
+    -> XML was designed to store and 'transport data between client/server'.
+    -> XML provides a 'standard method to access information', making it easier for applications and devices of all kinds to use, store, transmit, and display data.
+
+- HTTP:
+    -> The Hypertext Transfer Protocol (HTTP) is an application-level protocol for distributed, collaborative, hypermedia information systems.  
+    -> This is the foundation for data communication for the World Wide Web (i.e. internet) since 1990.
+
+- Protocol:
+    -> A protocol is a standard set of rules that allow electronic devices to communicate with each other. 
+    -> These rules include what type of data may be transmitted, what commands are used to send and receive data, and how data transfers are confirmed. 
+
+    

@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+h1, p {
+    background-color: #DDE0E3;    /* Light gray */
+}
+
+em, strong {
+    background-color: #B2D6FF;    /* Light blue */
+    /* display: block */
+    display: inline
+}
+
+
+h1 {
+    padding: 50px;
+}
+
+p {
+    /* padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;  (or)  
+
+    padding: 20px 10 20px 0px;   Top  Right  Bottom  Left     (or)*/
+
+    padding: 20px 10px  20px 10px;  /* Vertical Horizontal */
+}
+
+
+h1 {
+    /* border: 2px solid #5D6063; */
+    border-bottom: 2px solid #5D6063;
+}
+
+p {
+    padding: 20px 0 20px 10px;
+    margin-bottom: 50px;          /* Add this */
+}
+
+strong {
+    /* it won’t affect the vertical layout of the surrounding boxes */
+    margin: 50px;   /*completely ignore the top and bottom */
+    padding: 50px;   /*overlap the top and bottom */
+}
+
+p {
+    margin-top: 25px;
+}
+
+div {
+    color: #FFF;
+    background-color: #5995DA;
+    font-weight: bold;
+    padding: 20px;
+    text-align: left;
+    border: 2px solid #5D6063;
+    border-radius: 5px;
+    width: 200px;
+    box-sizing: border-box;     /* content-box => default */
+    margin: 20px auto; /* Vertical  Horizontal */
+}
+
+body {
+    text-align: center;
+}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <ul id= 'listing'>
+            </ul>
+            <button id = 'addTask'>Add Task</button>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')     //accessing the diivision by id name
+        const addTaskHandler =document.getElementById('addTask')
+        const ulTag = document.getElementById('listing')
+
+        //1.add event handler/ event listener
+        addTaskHandler.addEventListener('click', function(){
+            //creating li-task
+            const task = prompt('enter the text')
+            const liTag = document.createElement('li')
+            liTag.innerHTML = task + " " +removeTaskHandler.textContent 
+            ulTag.appendChild(liTag)
+
+            //creating li-remove-button
+            const removeTaskHandler = document.createElement('button')
+            removeTaskHandler.textContent = 'remove'
+            liTag.appendChild(removeTaskHandler)
+
+            //2.remove event handler
+            removeTaskHandler.addEventListener('click',function(){
+                const confirmRemove = window.confirm("Are you sure?")
+                if(confirmRemove){
+                    ulTag.removeChild(liTag)
+                }
+            })  
+        })    
+    </script>
+</html>

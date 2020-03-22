@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id = "web">  <!--id is an attribute of id-->
+        </div>
+    </body>
+    <script>
+
+        //id
+        const webPage = document.getElementById('web')
+
+        const social = [{id:1, name:'facebook', url:'http://www.facebook.com'},{id:1, name:'google', url:'http://www.google.com'}]
+        
+        //ul-tag
+        const ulTag = document.createElement('ul')
+        ulTag.textContent = `Social Web Pages - ${social.length}`
+        webPage.appendChild(ulTag)
+        
+        //li-tag
+        social.forEach(function(s){
+            const liTag = document.createElement('li')
+                //a-tag
+                const aTag = document.createElement('a')
+                aTag.textContent = s.name    //we have to create a list-text-content(i.e, facebook) inside a-Tag  
+                aTag.setAttribute('href', s.url)      //(or)  aTag.href= s.url
+                liTag.appendChild(aTag)
+            ulTag.appendChild(liTag)
+        })
+
+        /* 
+
+        
+/*
+Social Web Pages - 2
+*facebook
+*google
+*/
+        
+
+
+    </script>
+</html>        

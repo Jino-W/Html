@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+
+        //LOCAL STPORAGE(available only in browser) - we can store only 'strings'
+        console.log('starting', localStorage)
+
+        //setItem(key, value)
+        localStorage.setItem('name','virat') //{name: "virat", length: 1}
+        localStorage.setItem('fruit','mango')     //{name: "virat", fruit: "mango", length: 2}
+        console.log('after setting', localStorage) //after setting  {name: "virat", fruit: "mango", length: 2}
+        localStorage.setItem('name','sam')        //re-assigning
+        console.log('after setting name 2nd time', localStorage)   // {name: "sam", fruit: "mango", length: 2}
+        
+        //stores only string
+        //number
+        localStorage.setItem('age',29)     //{name: "virat", fruit: "mango", length: 2}
+        console.log(localStorage)  //{age: "29", name: "virat", fruit: "mango", length: 3}
+
+        //string
+        //localStorage.setItem('age',jino) 
+        //console.log(localStorage)               //localStorage.html:24 Uncaught ReferenceError: jino is not defined
+
+        //object
+        const person ={
+            name:'jino',
+            age:21
+        }
+
+        //if we are trying to store object or array ->convert it into string (JSON.stringify)
+        //localStorage.setItem('person',person)  //{person: "[object Object]", age: "29", name: "virat", length: 3}   -> we loosing data here
+        localStorage.setItem('person',JSON.stringify(person))   //{person: "{"name":"jino","age":21}", name: "virat", age: "29", length: 3}
+        console.log("object as string",localStorage)
+
+        //getItem(key)
+        console.log('getItem',localStorage.getItem('fruit'))      //mango
+        console.log('getItem',localStorage.getItem('city'))  //null
+        console.log('getItem2',localStorage.getItem('name','fruit')) //sam
+        console.log('getItem', localStorage.getItem('age'))     //29
+
+        //if we are trying to read object or array ->convert it into js object (JSON.parse)
+        console.log('getObject', JSON.parse(localStorage.getItem('person')))        //{name: "jino", age: 21}   =>  string -> object (we can use dot operator)
+        console.log('getObject', JSON.parse(localStorage.getItem('person')).name)   //jino
+
+        //key(index)
+        console.log(`key-1`,localStorage.key(1)) //key person
+        //removeItem(key)
+        localStorage.removeItem('fruit')
+        console.log('after removing', localStorage)        // after removing   {name: "virat", length: 1}
+
+
+        //clear() -> to remove all the items
+        localStorage.clear()
+        console.log('after clearing', localStorage)  //after clearing  {length: 0}
+        
+    </script>
+</html>w

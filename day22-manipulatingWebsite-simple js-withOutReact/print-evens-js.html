@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id = "add"> 
+        </div>
+    </body>
+    <script>
+        const addition = document.getElementById('add')
+        const ulTag = document.createElement('ul')
+        ulTag.textContent = `Even Numbers`   //(or)  ulTag.innerHTML  = `Even Numbers` 
+        for(let i=0;i<=10;i++){
+            if(i%2 == 0){              // (or) for(let i=0;i<=10;i+=2)
+            const liTag = document.createElement('li')
+            liTag.textContent = i
+            ulTag.appendChild(liTag)
+            }
+        }
+        addition.appendChild(ulTag)
+/*
+Even Numbers
+*0
+*2
+*4
+*6
+*8
+*10
+*/
+
+    </script>
+</html>

@@ -1,0 +1,35 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+            
+    </body>
+    <script>
+        var name = prompt('Enter your name');   //The value that prompt holds is always be string
+        console.log('Hello '+name+' welcome to the guess game');
+        var targetNumber=Math.round(Math.random()*100);
+        console.log(targetNumber);
+        var maxGuess=10,playerGuess=0;
+
+        while(playerGuess<maxGuess){
+            var guess=prompt('guess my number');
+            if(guess>targetNumber){
+                console.log('your guess is High');
+            }
+            else if(guess<targetNumber){
+                console.log('your guess is Low');
+            }
+            else{
+                console.log('good job..'+name+' you found the number');
+                break;
+            }
+            playerGuess++;
+        }
+        console.log('your are out of the loop');
+        if(playerGuess===maxGuess){
+                console.log('You didn\'t get my number');
+        }
+
+    </script>
+</html>

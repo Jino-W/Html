@@ -1,0 +1,82 @@
+<!-- Date: 06/09/2019 -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get My Location</title>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+</head>
+<body>
+    <div id = "root">
+        <center>
+                <button>Get My Location</button>
+           <p id = "latLong"></p>
+           <p id = "temp"></p>
+           <div id="map" style="width: 100%; height: 530px;"></div>
+        </center>
+    </div>
+    <script>
+        
+        const rootHandle = document.getElementById('root');
+        const buttonHandle = document.querySelector('button')
+        const latLongHandle = document.getElementById('latLong');
+        const tempHandle = document.getElementById('temp')
+       
+
+        buttonHandle.addEventListener('click', function(){
+            //w3 schools
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                latLongHandle.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            function showPosition(position) {
+            latLongHandle.innerHTML = `Latitude: ${position.coords.latitude} <br/> Longitude: ${position.coords.longitude}`;
+            var lat = position.coords.latitude, long = position.coords.longitude;
+
+            const url_temp = `https://api.darksky.net/forecast/75cd27860091a377a5021437d05589c0/${lat},${long}`
+            const proxy = 'https://cors-anywhere.herokuapp.com/'
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', proxy + url_temp);
+            xhr.send();
+
+            xhr.onload = function(){
+                const temp = JSON.parse(xhr.responseText);
+                console.log(temp.currently.temperature);
+                 tempHandle.innerHTML = `Temperature is: ${temp.currently.temperature}`
+            } 
+
+            //https://developer.mapquest.com/documentation/mapquest-js/v1.3/
+            const url_map = `https://open.mapquestapi.com/staticmap/v4/getmap?key=8ZdLLmCqONedxFH2Lks7G3TQOXsh743U&size=600,400&zoom=13&center=${lat},${long}`
+            const xhr1 = new XMLHttpRequest();
+            xhr1.open('GET', url_map);
+            xhr1.send();
+
+            xhr1.onload = function() {
+                L.mapquest.key = '8ZdLLmCqONedxFH2Lks7G3TQOXsh743U';
+                var map = L.mapquest.map('map', {
+                center: [lat,long],
+                layers: L.mapquest.tileLayer('map'),
+                zoom: 12
+                });
+
+                map.addControl(L.mapquest.control());
+            }
+
+            }
+        }) 
+
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- `https://open.mapquestapi.com/staticmap/v4/getmap?key=8ZdLLmCqONedxFH2Lks7G3TQOXsh743U&size=600,400&zoom=13&center=12.9976828,77.56331469999999` -->
+
+<!-- `https://weather.cit.api.here.com/weather/1.0/report.json?product=observation&latitude=12.9976828&longitude=77.56331469999999&oneobservation=true&app_id=U9OLeSSctIndrLg13pOx&app_code=BaIyuIDg1K5M8Bo2yfckPg` -->
+
+<!-- `https://api.darksky.net/forecast/75cd27860091a377a5021437d05589c0/37.8267,-122.4233` -->

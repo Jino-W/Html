@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Word Count</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h2>Word Count</h2>
+            <textarea id= 'text'></textarea>
+            <p id = 'para'></p>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const textArea = document.getElementById('text')
+        const para = document.getElementById('para')
+        para.innerHTML = `You have written 0 words and 0 characters`
+
+        textArea.addEventListener('keyup',function(){
+            const characters = textArea.value.length
+            const words = textArea.value.split(' ')
+            while(words.indexOf('') >= 0){
+                words.splice(words.indexOf(''),1)
+            }
+            para.innerHTML = `You have written ${words.length} words and ${characters} characters`
+        })
+    
+    </script>
+</html>

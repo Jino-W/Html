@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const players = ['sachin', 'dhoni','rahul','sheekar','shami']
+
+        //h1-tag
+        const h1Tag = document.createElement('h1')
+        h1Tag.textContent = `Listing player - ${players.length}`   //Listing player - 5 
+        // (or)
+        //h1Tag.innerHTML = `Listing player by 'innerHtml' - ${players.length}`    =>Listing player by innerHtml - 5
+        rootHandle.appendChild(h1Tag)
+
+
+        //ul-tag
+        const ulTag = document.createElement('ul')
+        ulTag.textContent = `unordered list`
+        players.forEach(function(player){                      //creating 'li' for each player
+            const liTag = document.createElement('li')
+            liTag.textContent = player
+            ulTag.appendChild(liTag)
+        })
+        rootHandle.appendChild(ulTag)
+/*
+unordered list
+sachin
+dhoni
+rahul
+sheekar
+shami
+*/
+
+        //ol-tag
+        const olTag = document.createElement('ol')
+        olTag.textContent = 'ordered list'
+        players.sort().forEach(function(player){
+            const liTag = document.createElement('li')
+            liTag.textContent = player
+            olTag.appendChild(liTag)
+        })
+        rootHandle.appendChild(olTag)
+/*
+ordered list
+1.dhoni
+2.rahul
+3.sachin
+4.shami
+5.sheekar
+*/
+
+    </script>
+</html>

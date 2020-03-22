@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New Tab App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <div id='root'>
+            <h2>Enter the items</h2>
+        <form>
+            <input id="item" type="text" placeholder="New" required>
+            <input type='submit'/>
+        </form>
+        <h4>items</h4>
+        <button>clear</button>
+        <ul></ul>
+            
+        </div>
+        <script>
+              const rootHandle=document.getElementById('root')
+              const formHandle=document.querySelector('form')
+              const ulHandle=document.querySelector('ul')
+              const clearHandle=document.querySelector('button')
+              const inputHandle= document.getElementById('item')
+
+              let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+
+              localStorage.setItem('items', JSON.stringify(itemsArray))
+              const data = JSON.parse(localStorage.getItem('items'))
+
+              
+            formHandle.addEventListener('submit', function (event) {
+            event.preventDefault()
+
+            itemsArray.push(inputHandle.value)
+            localStorage.setItem('items', JSON.stringify(itemsArray))
+            liMaker(inputHandle.value)
+            inputHandle.value = ""
+            })
+            const liMaker = (text) => {
+              const liTag = document.createElement('li')
+              liTag.textContent = text
+              ulHandle.appendChild(liTag)
+              }
+
+
+            data.forEach(item => {
+            liMaker(item)
+            })
+
+            clearHandle.addEventListener('click', function () {
+            localStorage.clear()
+            while (ulHandle.firstChild) {
+            ulHandle.removeChild(ulHandle.firstChild)
+            }
+        })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Location</title>
+    </head>
+    <body>
+        <div id ="root">
+            <button></button>
+            <p id = 'loc'></p>
+            <p id = 'temp'></p>
+            <img id = 'img'> 
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const getLoc = document.querySelector('button')
+        getLoc.innerHTML = `Get Location`
+        const paraLoc = document.getElementById('loc')
+        const paraTemp = document.getElementById('temp')
+        const mapImg = document.getElementById('img')
+
+        //location  #latitude #longitude
+        getLoc.addEventListener('click', function(){
+            navigator.geolocation.getCurrentPosition(showPosition)
+            
+            function showPosition(position){
+                paraLoc.innerHTML =  `Your current position is:<br>latitude: ${position.coords.latitude} <br>longitude: ${position.coords.longitude}`
+                temperature(position.coords.latitude, position.coords.longitude)
+                map(position.coords.latitude, position.coords.longitude)
+            }
+            
+            //temperature
+            function temperature(lat, long) {
+                console.log(lat, long)
+                //https://api.darksky.net/forecast/[key]/[latitude],[longitude]
+                const url = `https://api.darksky.net/forecast/100f1b5d3ff50678a038d2a663887132/${lat},${long}`
+                const proxy = 'https://cors-anywhere.herokuapp.com/'
+                
+                const xhr = new XMLHttpRequest()
+                xhr.open('GET',proxy+url)                  //requesting the data from the particular url
+                xhr.send()
+
+                xhr.onload = function () {
+                    const info = JSON.parse(xhr.responseText)
+                    paraTemp.innerHTML = `Temperature is: ${info.currently.temperature}`
+                }
+            }
+
+            //map
+            function map(lat, long) {
+                //url1 = `https://www.mapquestapi.com/staticmap/v5/map?key=j6w4Ge7P3eStNxcFZqejlP83w4EIlrY5&center=${lat},${long},MA&size=1200,800@2x`
+                url3 = `https://www.mapquestapi.com/staticmap/v4/getmap?key=j6w4Ge7P3eStNxcFZqejlP83w4EIlrY5&size=600,600&type=map&imagetype=jpg&zoom=10&scalebar=false&traffic=false&center=${lat},${long}&xis=https://s.aolcdn.com/os/mapquest/yogi/icons/poi-active.png,1,c,40.015831,-105.27927&ellipse=fill:0x70ff0000|color:0xff0000|width:2|40.00,-105.25,40.04,-105.30`
+                mapImg.setAttribute('width', "800")
+                mapImg.setAttribute('height', "500")
+                return mapImg.setAttribute('src', url3)
+            } 
+        })     
+    </script>
+</html>

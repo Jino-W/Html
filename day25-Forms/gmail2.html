@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h2 id = 'head2'></h2>
+            <input id = 'userName'/>
+            <input id = 'email'/>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const userName= document.getElementById('userName')
+        const email= document.getElementById('email')
+
+        //h2
+        const h2Tag = document.getElementById('head2')
+        h2Tag.innerHTML = 'Get mail id'
+        rootHandle.appendChild(h2Tag)
+
+        //select
+        const select = document.createElement('select')
+        select.innerHTML = 'emails'
+
+        const url = `http://jsonplaceholder.typicode.com/users`
+
+        //xhr
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', url)
+        xhr.send()
+
+        xhr.onload = function(){
+            const users = JSON.parse(xhr.responseText)
+
+            users.forEach(function(user){
+                const option = document.createElement('option')
+                option.textContent = user.name
+                select.appendChild(option)
+            })
+            userName.value=users[0].name
+            email.value=users[0].email
+            rootHandle.appendChild(select)
+            select.addEventListener("change", function(){
+                const user=users.filter(user => user.name==select.value)[0]
+                userName.value=user.name
+                email.value=user.email
+            })
+        }
+        
+    </script>
+</html>

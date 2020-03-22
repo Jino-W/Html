@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <button id = 'up'></button>
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const upButton = document.getElementById('up')
+
+        upButton.innerHTML = 'UP'
+
+        upButton.addEventListener('click', function(){
+            if(upButton.innerHTML == 'UP'){
+                upButton.innerHTML = 'DOWN'
+            }else{
+                upButton.innerHTML = 'UP'
+            }
+        })
+        
+    </script>
+</html>

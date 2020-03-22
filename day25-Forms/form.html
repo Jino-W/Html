@@ -1,0 +1,41 @@
+<!--working with forms-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>enter name, reverse in console</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h2>Enter Info</h2>
+            <form id = "myForm">     <!--form has the page reloading property-->
+                <label>Enter your name
+                    <input type = "text" id='name'/>  <!--password -> masking characters-->
+                    <span id = 'popMsg'></span>
+                </label>
+                <br/>
+                <input type = "submit"/>
+            </form>
+        </div>
+    </body>
+    <script>
+        //real time example , paytm
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const formHandle = document.getElementById('myForm')
+        const nameHandle = document.getElementById('name')
+        const popHandle = document.getElementById('popMsg')
+
+        formHandle.addEventListener('submit', function(submit_obj){   //submit-ing the form can be done with single enter, no need to click the button 
+            submit_obj.preventDefault()   //to prevent the page reloading
+            console.log(nameHandle.value)
+            if(nameHandle.value == ''){
+                popHandle.innerHTML = '*name is required'
+            }else{
+                popHandle.innerHTML = ''
+            }
+            console.log(nameHandle.value.split('').reverse().join(''))   //'onij'
+        })
+        
+    </script>
+</html>
+

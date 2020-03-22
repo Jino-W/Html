@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+        </div>
+    </body>
+    <script>
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const url = 'http://jsonplaceholder.typicode.com/posts'
+
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', url)                  //requesting the data from the particular url
+        xhr.send()
+        
+        //Asynchronous task-> ie, fetching data from db -> network operation -> time consuming => so that, use 'callBackFunction'
+        xhr.onload = function(){
+            const users = JSON.parse(xhr.responseText)
+            const h1 = document.createElement('h1')
+            h1.textContent = `Listing Posts - ${users.length}`
+            rootHandle.appendChild(h1)
+
+            const ul = document.createElement('ul')
+            users.forEach(function(user){
+                const li = document.createElement('li')
+                li.innerHTML = user.title
+                ul.appendChild(li)
+            })
+            rootHandle.appendChild(ul)
+        }
+        
+
+
+        
+    </script>
+</html>

@@ -1,0 +1,49 @@
+<!--working with forms-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id ="root">
+            <h2>Enter Info</h2>
+            <form id = "myForm">     <!--form has the page reloading property-->
+                <label>Enter your name
+                    <input type = "text" id='name'/>  
+                    <span id = 'popMsg'></span>
+                </label>
+                <br/>
+                <input type = "submit"/>
+            </form>
+        </div>
+    </body>
+    <script>
+        //real time example , paytm
+        const rootHandle = document.getElementById('root');    //accessing the diivision by id name
+        const formHandle = document.getElementById('myForm')
+        const nameHandle = document.getElementById('name')
+        const popHandle = document.getElementById('popMsg')
+
+
+        formHandle.addEventListener('submit', function(submit_obj){   //submit-ing the form can be done with single enter, no need to click the button 
+            submit_obj.preventDefault() 
+             
+            const url = `https://gender-api.com/get?name=${nameHandle.value}&key=pRPLCejozFwCHFbVCR`
+         
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', url)
+            xhr.send()
+
+            xhr.onload = function(){ 
+            const users = JSON.parse(xhr.responseText)
+            popHandle.textContent= users.gender
+            }  
+        })
+
+        
+        
+        
+    </script>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>word count</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id='root'>
+            <h2>Word Count</h2>
+            <textarea id='text'></textarea>
+        </div>
+        <script>
+              const rootHandle=document.getElementById('root')
+              const textHandle=document.getElementById('text')
+              const parTag=document.createElement('p')
+              
+              parTag.textContent=`you have written 0 word and 0 character`
+              
+
+              
+              textHandle.addEventListener('keyup',function(){
+              const char=textHandle.value.length
+              const word=textHandle.value.split(' ')
+
+              console.log(word)
+              console.log(char)
+
+              parTag.textContent=`you have written ${word} word and ${char} character.`
+
+              })
+              rootHandle.appendChild(parTag)
+              
+        </script>
+    </body>
+</html>

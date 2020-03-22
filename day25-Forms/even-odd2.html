@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample HTML File</title>
+    </head>
+    <body>
+        <div id='root'></div>
+        <button id='even' value="Even">Even</button>
+        <button id='odd' value="Odd">Odd</button>
+        <button id='reset' value='Reset'>Reset</button>
+    </body>
+    <script>
+
+
+    const rootHandle = document.getElementById('root')
+    const numList=[1,2,3,4,5,6,7,8,9,10]
+    const ulTag=document.createElement('ul')
+    const evenBtn=document.getElementById('even')
+    const oddBtn=document.getElementById('odd')
+    const resetBtn=document.getElementById('reset')
+
+    function removeChild(){
+        while( ulTag.firstChild ){
+            ulTag.removeChild( ulTag.firstChild );
+        }
+    }
+
+    numList.forEach(num =>{
+        const liTag=document.createElement('li')
+        liTag.textContent=num
+        ulTag.appendChild(liTag)
+    })
+
+    evenBtn.addEventListener('click',function(){
+        removeChild()
+        numList.filter( num => num%2==0).forEach(n =>{
+            const liTag = document.createElement('li')
+            liTag.textContent=n
+            ulTag.appendChild(liTag)
+        })
+    })
+
+    oddBtn.addEventListener('click',function(){
+        removeChild()
+        numList.filter( num => num%2!=0).forEach(n =>{
+            const liTag = document.createElement('li')
+            liTag.textContent=n
+            ulTag.appendChild(liTag)
+        })
+    })
+
+    resetBtn.addEventListener('click',function(){
+        removeChild()
+        numList.forEach(n => {
+            const liTag = document.createElement('li')
+            liTag.textContent=n
+            ulTag.appendChild(liTag)
+        })
+    })
+
+    rootHandle.appendChild(ulTag)
+
+</script>
+</html>
